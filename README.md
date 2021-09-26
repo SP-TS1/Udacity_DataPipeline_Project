@@ -39,18 +39,18 @@ _________________
 
 #### 3.2 Structure operators in the DAG
 ##### Start Operator
-    The start operator is the first operator that would be executed, the main purpose is to prepare all the tables in redshift which would be filled later by data from staging events in S3 buckets. If Redshift cluster have already had any tables on them, the function should delete and re-create them again.
+   The start operator is the first operator that would be executed, the main purpose is to prepare all the tables in redshift which would be filled later by data from staging events in S3 buckets. If Redshift cluster have already had any tables on them, the function should delete and re-create them again.
 
 ##### Stage Operator
-    The stage operator is expected to be able to load any JSON formatted files from S3 to Amazon Redshift. The operator creates and runs a SQL COPY statement. The operator's parameters should specify where in S3 the file is loaded and what is the target table.
+   The stage operator is expected to be able to load any JSON formatted files from S3 to Amazon Redshift. The operator creates and runs a SQL COPY statement. The operator's parameters should specify where in S3 the file is loaded and what is the target table.
 
-    The parameters should be used to distinguish between JSON file. Another important requirement of the stage operator is containing a templated field that allows it to load timestamped files from S3 based on the execution time and run backfills.
+   The parameters should be used to distinguish between JSON file. Another important requirement of the stage operator is containing a templated field that allows it to load timestamped files from S3 based on the execution time and run backfills.
 
 ##### Fact and Dimension Operators
-    With dimension and fact operators, we could take as input a SQL statement and target database on which to run the query against in order to insert data into every tables within the Redshift cluster. Dimension loads are often done with the truncate-insert pattern where the target table is emptied before the load but Fact tables are usually so massive that they should only allow append type functionality.
+   With dimension and fact operators, we could take as input a SQL statement and target database on which to run the query against in order to insert data into every tables within the Redshift cluster. Dimension loads are often done with the truncate-insert pattern where the target table is emptied before the load but Fact tables are usually so massive that they should only allow append type functionality.
 
 ##### Data Quality Operator
-    The final operator is the data quality operator, which is used to run checks on the data itself. The operator's main functionality is to receive one or more SQL based test cases along with the expected results and execute the tests. For each the test, the test result and expected result needs to be checked and if there is no match, the operator should raise an exception and the task should retry and fail eventually.
+   The final operator is the data quality operator, which is used to run checks on the data itself. The operator's main functionality is to receive one or more SQL based test cases along with the expected results and execute the tests. For each the test, the test result and expected result needs to be checked and if there is no match, the operator should raise an exception and the task should retry and fail eventually.
 
 _________________
 
@@ -65,6 +65,6 @@ _________________
 
 #### Step 5: Complete Project Write Up
 #### choice of tools and technologies for the project
-        In this project I chose postgresql to handle the data on Redshift because it's easier to cope with not very large data and also not using complex queries, But I mainly focused on practing to use Airflow such as creating custom operators to perform tasks such as staging the data, filling the data warehouse, and running checks on the data. Also using Airflow UI is much easier to monitor processes in the pipelines since there are DAG graph and logs for checking. Apart from this, Python is an often used programming language and was used because it is the language I am the most comfortable with.
+   In this project I chose postgresql to handle the data on Redshift because it's easier to cope with not very large data and also not using complex queries, But I mainly focused on practing to use Airflow such as creating custom operators to perform tasks such as staging the data, filling the data warehouse, and running checks on the data. Also using Airflow UI is much easier to monitor processes in the pipelines since there are DAG graph and logs for checking. Apart from this, Python is an often used programming language and was used because it is the language I am the most comfortable with.
     
 _________________
