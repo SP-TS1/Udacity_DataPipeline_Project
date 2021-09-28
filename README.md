@@ -63,7 +63,7 @@ _________________
 
 _________________
 
-#### Step 5: Complete Project Write Up
+### Step 5: Complete Project Write Up
 #### choice of tools and technologies for the project
    In this project I chose postgresql to handle the data on Redshift because it's easier to cope with not very large data and also not using complex queries, But I mainly focused on practing to use Airflow such as creating custom operators to perform tasks such as staging the data, filling the data warehouse, and running checks on the data. Also using Airflow UI is much easier to monitor processes in the pipelines since there are DAG graph and logs for checking. Apart from this, Python is an often used programming language and was used because it is the language I am the most comfortable with.
     
